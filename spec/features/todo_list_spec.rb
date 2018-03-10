@@ -8,7 +8,7 @@ RSpec.describe "TodoList", :type => :feature do
       end
 
       scenario "Create a todo list" do
-        visit '/todo_list/new'
+        visit '/todo_lists/new'
         within("form") do
           fill_in 'Title', with: 'My First Todo List'
         end
