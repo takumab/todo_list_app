@@ -4,12 +4,12 @@ RSpec.describe "Task", :type => :feature do
   feature "Task" do
       background do
         @todo_list = create(:todo_list)
-        @todo_list_with_tasks = create(:todo_list_with_tasks).tasks
-        #@task = FactoryBot.create(:task)
+        @todo_list_id = @todo_list.id
+        @task = FactoryBot.create(:task)
       end
 
-      scenario "Create a todo list", js: true do
-        visit '/todo_lists/show'
+      scenario "Add a task", js: true do
+        visit "/todo_lists/#{@todo_list_id}"
         within("form") do
           fill_in 'Descripton', with: 'My first task'
         end
