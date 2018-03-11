@@ -2,6 +2,12 @@
 
 <% @todo_lists.each do |tl| %>
   <ul>
-    <li><%= link_to tl.title, todo_list_path(tl.id) %></li>
+    <li>
+      <%= link_to tl.title, todo_list_path(tl.id) %>
+      <%= link_to 'Edit', edit_todo_list_path(tl) %>
+      <%= link_to 'Delete', tl, method: :delete, data: { confirm: "Are you sure?" } %>
+    </li>
   </ul>
 <% end %>
+
+<%= link_to 'Create todo list', root_path, class: 'btn btn-primary' %>

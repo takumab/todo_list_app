@@ -17,9 +17,6 @@ class TodoListsController < ApplicationController
   def edit
   end
 
-  def update
-  end
-
   def create
     @todo_list = TodoList.new(todo_list_params)
 
@@ -30,6 +27,19 @@ class TodoListsController < ApplicationController
       flash[:error] = "Your todo list has yet to be created. Try again."
       render 'new'
     end
+  end
+
+  def update
+    if @todo_list.update(todo_list_params)
+      redirect_to @todo_list, notice: "Todo list updated"
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @todo_list.destroy
+    redirect_to todo_lists_path, notice: "Todo list successfully deleted"
   end
 
 
