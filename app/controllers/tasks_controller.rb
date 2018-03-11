@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, except: [:create]
+  before_action :set_todo_list, only: [:destroy, :completed]
 
   def create
     @todo_list = TodoList.find(params[:todo_list_id])
@@ -13,7 +14,23 @@ class TasksController < ApplicationController
     end
   end
 
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+    redirect_to root_path, notice: "Task has been deleted."
+  end
+
+  def completed
+    @todo_list = TodoList.find(params[:todo_list_id])
+    @task = @todo_list.tasks.completed
+    redirect_to root_path, notice: "Task completed!"
+  end
+
   private
+
+  def set_todo_list
+    @todo_list = TodoList.find(params[:todo_list_id])
+  end
 
   def set_task
     @task = Task.find(params[:id])

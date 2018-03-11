@@ -11,11 +11,10 @@ RSpec.describe "Task", :type => :feature do
       scenario "Add a task", js: true do
         visit "/todo_lists/#{@todo_list_id}"
         within("form") do
-          fill_in 'Descripton', with: 'My first task'
+          fill_in 'task_description', with: @task[:description]
         end
         click_button 'Add task'
-        expect(page).to have_content('Your todo list: My First Todo List has been created')
-        expect(page).to have_current_path()
+        expect(page).to have_content('Task created')
       end
   end
 end

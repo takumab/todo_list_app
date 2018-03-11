@@ -8,6 +8,8 @@ class TodoListsController < ApplicationController
   end
 
   def show
+    @tasks = @todo_list.tasks
+    @not_completed = @todo_list.tasks.not_completed
   end
 
   def new

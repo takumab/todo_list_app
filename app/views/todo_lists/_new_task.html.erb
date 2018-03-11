@@ -1,0 +1,8 @@
+<%= form_for([@todo_list, @todo_list.tasks.build], html: { class: 'form-inline'}) do |f| %>
+  <div class="input-group mb-2">
+    <%= f.text_field :description, placeholder: 'Description', class: 'form-control' %>
+    <div class="input-group-append">
+      <%= f.submit 'Add task', class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
