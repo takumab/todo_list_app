@@ -3,7 +3,9 @@ require 'rails_helper'
 RSpec.describe "Task", :type => :feature do
   feature "Task" do
       background do
-        @task = FactoryBot.create(:task)
+        @todo_list = create(:todo_list)
+        @todo_list_with_tasks = create(:todo_list_with_tasks).tasks
+        #@task = FactoryBot.create(:task)
       end
 
       scenario "Create a todo list", js: true do
