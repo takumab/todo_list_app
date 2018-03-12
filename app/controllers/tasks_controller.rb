@@ -6,6 +6,7 @@ class TasksController < ApplicationController
     @todo_list = TodoList.find(params[:todo_list_id])
     @task = @todo_list.tasks.new(task_params)
     if @task.save
+      logger.debug "Task is saved"
       flash[:notice] = "Task created!"
       redirect_to @todo_list
     else
@@ -20,7 +21,7 @@ class TasksController < ApplicationController
   end
 
   def completed
-    @task.update_attribute(:completed, true)
+    @task.update_attributes(:completed, true)
     redirect_to root_path, notice: "Task completed!"
   end
 
@@ -28,6 +29,7 @@ class TasksController < ApplicationController
 
   def set_task
     @task = @todo_list.tasks.find(params[:id])
+
   end
 
   def set_todo_list
