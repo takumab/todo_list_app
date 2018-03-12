@@ -1,23 +1,33 @@
-<h1><%= @todo_list.title %></h1>
+
 
 <div class="row">
-  <div class="col-sm-5">
-  <% @tasks.each do |task| %>
-    <% if @not_completed %>
-
-        <div class="card">
-          <div class="card-body">
-            <%= task.description %>
-            <%= link_to 'Complete', completed_todo_list_task_path(@todo_list, task), method: :patch %>
-          </div>
-        </div>
-
-    <% end %>
+  <div class="col-sm-6">
+    <h1><%= @todo_list.title %></h1>
+  <% @tasks.not_completed.each do |task| %>
+    <div class="card">
+      <div class="card-body">
+        <%= task.description %>
+        <%= link_to 'Complete', completed_todo_list_task_path(@todo_list, task), method: :patch,
+                                class: 'complete btn btn-primary' %>
+      </div>
+    </div>
   <% end %>
     <div class="card">
       <div class="card-body">
-      <%= render 'new_task' %>
+        <%= render 'new_task' %>
       </div>
     </div>
   </div>
-</div>
+
+  <div class="col-sm-6">
+    <h1>Completed Task</h1>
+    <% @tasks.completed.each do |task| %>
+      <div class="card">
+        <div id="cbody" class="card-body">
+          <strike><%= task.description %></strike>
+          <%= link_to 'x', todo_list_task_path(@todo_list, task), method: :delete,
+                data: { confirm: 'Are you sure?' }, class: 'delete'  %>
+        </div>
+      </div>
+    <% end %>
+  </div>

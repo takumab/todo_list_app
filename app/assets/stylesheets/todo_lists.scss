@@ -1,3 +1,23 @@
 // Place all the styles related to the todo_lists controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$margin-left-250: 250px;
+
+
+.complete {
+  margin-left: $margin-left-250;
+}
+
+.delete {
+  margin-left: 350px;
+}
+
+a.delete {
+  text-decoration: none;
+  color: #808080;
+}
+
+#cbody {
+  background: #D0D0D0;
+}
