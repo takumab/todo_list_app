@@ -5,12 +5,11 @@
     <ul class="list-group">
       <% @tasks.each do |task| %>
         <% if @not_completed %>
-          <div class="col-sm-4">
+          <div class="col-sm-6">
             <li class="list-group-item"><%= task.description %></li>
           </div>
-          <div class="col-sm-2">
-            <%= submit_tag 'Complete', completed_todo_list_task_path,
-                                      class: 'btn btn-success' %>
+          <div class="col-sm-6">
+            <%= link_to 'Complete', completed_todo_list_task_path(@todo_list, task), method: :patch %>
           </div>
         <% end %>
       <% end %>
