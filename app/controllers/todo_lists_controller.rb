@@ -9,8 +9,6 @@ class TodoListsController < ApplicationController
 
   def show
     @tasks = @todo_list.tasks
-    @not_completed = @todo_list.tasks.not_completed
-    @completed = @todo_list.tasks.completed
   end
 
   def new
