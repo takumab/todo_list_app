@@ -3,4 +3,6 @@ class Task < ApplicationRecord
 
   scope :not_completed,  -> { where(completed: false) }
   scope :completed, -> { where(completed: true) }
+
+  validates :description, presence: true
 end
