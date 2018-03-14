@@ -18,9 +18,13 @@ RSpec.describe "Task", :type => :feature do
       end
 
       scenario "Complete a task", js: true do
-        visit "/todo_lists/#{@todo_list_id}/tasks/:id/completed"
-        click_button 'Complete'
-        expect(page).to have_content('Task created')
+        visit "/todo_lists/#{@todo_list_id}"
+        within("form") do
+          fill_in 'task_description', with: @task[:description]
+        end
+        click_button 'Add task'
+        click_link 'Complete'
+        expect(page).to have_content('Task completed')
       end
   end
 end

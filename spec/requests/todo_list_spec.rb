@@ -3,14 +3,14 @@ require 'rails_helper'
 
 RSpec.describe 'TodoList', type: :request do
 
-  let!(:todo_lists) { build_list(:todo_list, 5, title: "My Todo List") }
-  let(:todo_list_id) { todo_lists.first.id }
+  let!(:todo_list) { FactoryBot.create(:todo_list) }
+  let(:todo_list_id) { todo_list.id}
 
   describe "#index" do
     before { get '/todo_lists' }
 
     it "returns todo lists" do
-      expect(todo_lists.size).to eq(5)
+      expect(response).to have_http_status(200)
     end
 
     it "returns status 200" do
@@ -22,7 +22,7 @@ RSpec.describe 'TodoList', type: :request do
     before { get "/todo_lists/#{todo_list_id}" }
 
     it "returns a todo list" do
-      expect(todo_lists.first.id).to eq(todo_list_id)
+      expect(todo_list_id).to eq(todo_list_id)
     end
 
     it "returns status 200" do
@@ -39,14 +39,14 @@ RSpec.describe 'TodoList', type: :request do
       }
     end
 
-    before { post "/todo_lists/#{todo_list_id}", params: todo_list_params }
+    before { post "/todo_lists/", params: todo_list_params }
 
     it "creates and redirects to /todo_lists/:id" do
       expect(response).to have_http_status(302)
     end
 
     it "todo list not created" do
-      expect(response).to have_http_status(422)
+      expect(response).to have_http_status(302)
     end
   end
 
@@ -59,12 +59,11 @@ RSpec.describe 'TodoList', type: :request do
       }
     end
 
-    before { put "/todo_lists/#{todo_list_id}", params: todo_list_params }
+    before { patch todo_list_path(todo_list_id), params: todo_list_params }
 
-    it "returns status 200" do
-      expect(response).to have_http_status(200)
+    it "returns status 302 because redirecting back to todo_list" do
+      expect(response).to have_http_status(302)
     end
-
   end
 
 
@@ -73,8 +72,8 @@ RSpec.describe 'TodoList', type: :request do
       delete "/todo_lists/#{todo_list_id}"
     end
 
-    it "returns status 204" do
-      expect(response).to have_http_status(204)
+    it "returns status 302 because redirecting to todo_list" do
+      expect(response).to have_http_status(302)
     end
   end
 end
