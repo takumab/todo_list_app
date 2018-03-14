@@ -8,10 +8,9 @@ RSpec.describe TodoList, type: :model do
       before(:each) do
         @todo_list = FactoryBot.build(:todo_list, title: 'My todo list')
         @title = TodoList.new(title: ' ')
-
       end
 
-      it "has not title" do
+      it "has no title" do
         expect(@title).not_to be_valid
       end
 
