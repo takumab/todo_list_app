@@ -7,10 +7,14 @@ $margin-left-250: 250px;
 
 .complete {
   margin-left: $margin-left-250;
+  position: absolute;
+  right: 34px;
 }
 
 .delete {
   margin-left: 350px;
+  position: absolute;
+  right: 34px;
 }
 
 a.delete {
