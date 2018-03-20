@@ -2,9 +2,9 @@ require 'rails_helper'
 
 
 RSpec.describe 'Tasks', type: :request do
-  let!(:todo_lists) { create_list(:todo_list, 5, title: "My Todo List") }
-  let!(:tasks) { create_list(:task, 3, description: 'Some task', completed: false) }
-  let(:todo_list_id) { todo_lists.first.id }
+  let!(:todo_list) { FactoryBot.create(:todo_list) }
+  let!(:task) { FactoryBot.create(:task) }
+  let(:todo_list_id) { todo_list.id }
 
 
   describe '#create' do
@@ -12,8 +12,7 @@ RSpec.describe 'Tasks', type: :request do
     let(:task_params) do
       {
         task: {
-          description: 'My first task',
-          completed: false
+          description: 'My first task'
         }
       }
     end
