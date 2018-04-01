@@ -9,7 +9,7 @@ RSpec.describe User, type: :feature do
       visit root_path
       # She notices that she is not signed up
       # Sees the sign up and log in link
-      expect(page).to have_content('Sign Up')
+      expect(page).to have_content('Sign up')
       # Jane clicks on the sign up link to sign up.
       click_link('Sign Up')
     end

@@ -15,5 +15,14 @@ RSpec.describe "TodoList", :type => :feature do
         expect(page).to have_content('Your todo list: My First Todo List has been created')
         expect(page).to have_current_path(todo_list_path(TodoList.last))
       end
+
+      scenario "Navbar" do
+        visit '/todo_lists'
+        expect(page).to have_selector('nav')
+        within("#navbarNav") do
+          expect(page).to have_content('All Lists')
+          expect(page).to have_content('Log in')
+        end
+      end
   end
 end
