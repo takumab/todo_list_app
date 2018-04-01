@@ -16,12 +16,12 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to root_path, notice: "Task has been deleted."
+    redirect_to @todo_list, notice: "Task has been deleted."
   end
 
   def completed
     @task.update_attribute(:completed, true)
-    redirect_to root_path, notice: "Task completed!"
+    redirect_to @todo_list, notice: "Task completed!"
   end
 
   private
